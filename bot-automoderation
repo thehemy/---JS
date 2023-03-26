@@ -1,0 +1,16 @@
+const Discord = require('discord.js');
+const client = new Discord.Client();
+
+const blockedWords = ['спам', 'мошенничество', 'непристойный контент'];
+
+client.on('ready', () => {
+  console.log(`Logged in as ${client.user.tag}!`);
+});
+
+client.on('message', msg => {
+  if (blockedWords.some(word => msg.content.includes(word))) {
+    msg.delete();
+  }
+});
+
+client.login('your-bot-token');
